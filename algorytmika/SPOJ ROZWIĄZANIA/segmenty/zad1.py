@@ -32,20 +32,55 @@ for p in range(0,n):
         suma =sum(A[p:k+1])
         maxsuma=max(maxsuma,suma)
 
+
 """""
-s=[]
-suma_pref=0
-for liczba in A:
-    suma_pref+=liczba
-    s.append(suma_pref)
-s.append(0)
-maxsum=0
-for p in range(0,n):
-    for k in range(p,n):
-        suma=s[k]-s[p-1]
-        if suma>maxsuma:
-            maxsum=suma
-            max_p=p
-            max_k=k
-print('maxsuma',maxsuma,'max_p',p,'max_k',k)
+
+"""""
+moje rozwiązanie 
+resultTotal=0
+indexlisty=0
+totalhelper=0
+while indexlisty<len(A):
+
+
+    liczba=A[indexlisty]
+    if liczba>0:
+        totalhelper += liczba
+
+    if liczba<0:
+        totalhelper += liczba
+        if totalhelper<0:
+            totalhelper=0
+
+    if totalhelper>resultTotal:
+        resultTotal=totalhelper
+    indexlisty += 1
+"""""
+n=len(A)
+max_suma=0
+max_p=0
+max_k=0
+p=0
+k=0
+suma=0
+while p<n and k<n:
+    suma+=A[k]
+    if suma<0:
+        p=k+1
+        k=p
+        suma=0
+    elif suma>max_suma:
+        max_suma=suma
+        max_p=p
+        max_k=k
+        k+=1
+    else:
+        k+=1
+
+
+print(str(max_p)+' '+str(max_k))
+
+
+
+##print('maxsuma',maxsuma,'max_p',p,'max_k',k)
 
